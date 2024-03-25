@@ -31,3 +31,8 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# project
+apoliceFraude.txt
+apoliceViagem.txt
+/src/main/resources/clientes.json
