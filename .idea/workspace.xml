@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b88b94c9-ae5b-48f4-81e5-7f1aabc0bf38" name="Changes" comment="Commit inicial.">
+      <change afterPath="$PROJECT_DIR$/src/br/com/cdb/bancodigital/controller/ClienteController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/br/com/cdb/bancodigital/dao/ClienteDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/br/com/cdb/bancodigital/dto/ClienteDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/br/com/cdb/bancodigital/model/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/br/com/cdb/bancodigital/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/com/cdb/bancodigital/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/br/com/cdb/bancodigital/enumeration/TipoClienteEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/com/cdb/bancodigital/enums/TipoClienteEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/br/com/cdb/bancodigital/model/ClienteModel.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2d9hv6rFKTwLa59e8rvY8LMYiEt" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/jpaveiro/BancoDigital",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.2-openjdk-21.0.2-f644763e9732-c0c073db" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b88b94c9-ae5b-48f4-81e5-7f1aabc0bf38" name="Changes" comment="" />
+      <created>1709426431824</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1709426431824</updated>
+      <workItem from="1709426432872" duration="1994000" />
+      <workItem from="1709529719818" duration="814000" />
+      <workItem from="1709586986540" duration="208000" />
+      <workItem from="1709756262743" duration="827000" />
+      <workItem from="1709757148400" duration="3303000" />
+      <workItem from="1709771477287" duration="6000" />
+      <workItem from="1709871227644" duration="467000" />
+      <workItem from="1709946346970" duration="53000" />
+      <workItem from="1710121833876" duration="644000" />
+      <workItem from="1710127444647" duration="2026000" />
+      <workItem from="1710273704857" duration="127000" />
+      <workItem from="1710560121053" duration="656000" />
+    </task>
+    <task id="LOCAL-00001" summary="Commit inicial.">
+      <option name="closed" value="true" />
+      <created>1710129080776</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1710129080776</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Commit inicial." />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit inicial." />
+  </component>
+</project>
