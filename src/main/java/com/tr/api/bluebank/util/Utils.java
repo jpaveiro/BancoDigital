@@ -22,12 +22,10 @@ public class Utils {
     }
 	
     public boolean validarCPF(String cpf) {
-        // Verifica o formato do CPF
         if (cpf == null || !cpf.matches("\\d{11}")) {
             return false;
         }
 
-        // Verifica se o CPF já existe
         ClienteRepository repository = new ClienteRepository();
         if (repository.cpfExists(cpf)) {
             return false;
@@ -37,7 +35,6 @@ public class Utils {
     }
     
     public boolean validarNome(String nome) {
-        // Verifica se o nome está dentro do limite de caracteres e não contém números
         return nome != null && nome.length() >= 2 && nome.length() <= 100 && nome.matches("^[a-zA-Z\\s'-]+$");
     }
     
@@ -61,9 +58,8 @@ public class Utils {
     }
     
     public boolean validarCep(String cep) {
-    	cep = cep.replace(".", "").replace("-", "");  // Limpa a formatação do CPF, se houver
+    	cep = cep.replace(".", "").replace("-", "");
         
-        // Verifica o formato do Cep
         if (cep == null || !cep.matches("\\d{8}")) {
             return false;
         }
@@ -99,12 +95,10 @@ public class Utils {
     }
     
     public static String removerNaoNumericos(String input) {
-        // Remove todos os caracteres que não são dígitos nem o ponto decimal, se tiver ele deixa o ponto decimal
         Pattern pattern = Pattern.compile("[^\\d,]");
         Matcher matcher = pattern.matcher(input);
         String result = matcher.replaceAll("");
         
-        // Substitui a vírgula por ponto, se presente
         result = result.replace(",", ".");
         
         return result;
