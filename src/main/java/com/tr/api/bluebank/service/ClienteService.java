@@ -42,9 +42,8 @@ public class ClienteService {
 		while (true) {
 			System.out.println("\u001B[36m" + "\nCPF: " + "\u001B[0m");
 			cpf = scanner.nextLine();
-			cpf = cpf.replace(".", "").replace("-", ""); // Limpa a formatação do CPF, se houver
+			cpf = cpf.replace(".", "").replace("-", "");
 
-			// Verifica o formato e a unicidade do CPF
 			if (!cpf.matches("\\d{11}")) {
 				System.out.println("\u001B[31m" + "CPF inválido! O CPF deve ter 11 dígitos numéricos." + "\u001B[0m");
 			} else if (utils.validarCPF(cpf)) {
@@ -66,9 +65,9 @@ public class ClienteService {
 						String input = scanner.nextLine();
 						if (input.equalsIgnoreCase("novo")) {
 							cadastrarCliente(scanner, clienteService, formatter);
-							return; // Sai do método atual após iniciar o cadastro de um novo cliente
+							return;
 						} else if (input.isEmpty()) {
-							break; // Sai do loop para corrija a data
+							break;
 						} else {
 							System.out.println("\u001B[31m" + "\nOpção inválida. Digite 'novo' para cadastrar novo cliente ou 'enter' para corrigir a data." + "\u001B[0m");
 						}
@@ -92,11 +91,10 @@ public class ClienteService {
 			System.out.println("\u001B[36m" + "\nCEP: " + "\u001B[0m");
 			cep = scanner.nextLine();
 
-			// Verifica apenas o formato do CEP
 			if (!utils.validarCep(cep)) {
 				System.out.println("\u001B[31m" + "\nCEP inválido! O CEP deve ter 8 dígitos numéricos." + "\u001B[0m");
 			} else {
-				break; // Se o CEP é válido, sai do loop
+				break;
 			}
 		}
 
@@ -149,32 +147,27 @@ public class ClienteService {
 	public void deposito(Scanner scanner) {
 		System.out.println("\u001B[36m" + "\nDepósito" + "\u001B[0m");
 
-		// Solicita número da conta
 		System.out.println("\u001B[36m" + "\nDigite o número da conta: " + "\u001B[0m");
 		String numeroContaStr = scanner.nextLine();
 		String numeroContaFormatado = Utils.removerNaoNumericos(numeroContaStr);
 		int numeroConta = Integer.parseInt(numeroContaFormatado);
 
-		// Verifica se a conta existe
 		Cliente cliente = clienteRepository.findByNumeroConta(numeroConta);
 		if (cliente == null) {
 			System.out.println("\u001B[31m" + "\nConta não encontrada." + "\u001B[0m");
 			return; // Sai do método se a conta não for encontrada
 		}
 
-		// Solicita valor do depósito
 		System.out.println("\u001B[36m" + "\nDigite o valor a ser depositado: " + "\u001B[0m");
 		String valorDepositoStr = scanner.nextLine();
 		String valorDepositoFormatado = Utils.removerNaoNumericos(valorDepositoStr);
 		double valorDeposito = Double.parseDouble(valorDepositoFormatado);
 
-		// Confirma e efetua depósito
 		System.out.println("\u001B[36m" + "\nConfirma o depósito de " + Utils.formatarSaldoParaExibicao(valorDeposito)
 				+ " na conta " + numeroConta + "? (sim/não)" + "\u001B[0m");
 		String confirmacao = scanner.nextLine();
 
 		if (confirmacao.equalsIgnoreCase("sim")) {
-			// Efetua o depósito
 			cliente.setSaldo(cliente.getSaldo() + valorDeposito);
 			clienteRepository.update(cliente);
 			System.out.println("\u001B[32m" + "\nDepósito realizado com sucesso!" + "\u001B[0m");
@@ -188,38 +181,32 @@ public class ClienteService {
 	public void saque(Scanner scanner) {
 		System.out.println("\u001B[36m" + "\nSaque" + "\u001B[0m");
 
-		// Solicita número da conta
 		System.out.println("\u001B[36m" + "\nDigite o número da conta: " + "\u001B[0m");
 		String numeroContaStr = scanner.nextLine();
 		String numeroContaFormatado = Utils.removerNaoNumericos(numeroContaStr);
 		int numeroConta = Integer.parseInt(numeroContaFormatado);
 
-		// Verifica se a conta existe
 		Cliente cliente = clienteRepository.findByNumeroConta(numeroConta);
 		if (cliente == null) {
 			System.out.println("\u001B[31m" + "\nConta não encontrada." + "\u001B[0m");
 			return; // Sai do método se a conta não for encontrada
 		}
 
-		// Solicita valor do saque
 		System.out.println("\u001B[36m" + "\nDigite o valor a ser sacado: " + "\u001B[0m");
 		String valorSaqueStr = scanner.nextLine();
 		String valorSaqueFormatado = Utils.removerNaoNumericos(valorSaqueStr);
 		double valorSaque = Double.parseDouble(valorSaqueFormatado);
 
-		// Verifica se o saldo é suficiente para o saque
 		if (cliente.getSaldo() < valorSaque) {
 			System.out.println("\u001B[31m" + "\nSaldo insuficiente para realizar o saque." + "\u001B[0m");
 			return; // Sai do método se o saldo for insuficiente
 		}
 
-		// Confirma e efetua o saque
 		System.out.println("\u001B[36m" + "\nConfirma o saque de " + Utils.formatarSaldoParaExibicao(valorSaque)
 				+ " da conta " + numeroConta + "? (sim/não)" + "\u001B[0m");
 		String confirmacao = scanner.nextLine();
 
 		if (confirmacao.equalsIgnoreCase("sim")) {
-			// Efetuar o saque
 			cliente.setSaldo(cliente.getSaldo() - valorSaque);
 			clienteRepository.update(cliente);
 			System.out.println("\u001B[32m" + "\nSaque realizado com sucesso!" + "\u001B[0m");
@@ -233,52 +220,44 @@ public class ClienteService {
 	public void realizarPix(Scanner scanner) {
 		System.out.println("\u001B[36m" + "\nTransferência via PIX" + "\u001B[0m");
 
-		// Solicita número da conta de origem
 		System.out.println("\u001B[36m" + "\nDigite o número da conta de origem: " + "\u001B[0m");
 		String numeroContaOrigemStr = scanner.nextLine();
 		String numeroContaOrigemFormatado = Utils.removerNaoNumericos(numeroContaOrigemStr);
 		int numeroContaOrigem = Integer.parseInt(numeroContaOrigemFormatado);
 
-		// Verifica se a conta de origem existe
 		Cliente clienteOrigem = clienteRepository.findByNumeroConta(numeroContaOrigem);
 		if (clienteOrigem == null) {
 			System.out.println("\u001B[31m" + "\nConta de origem não encontrada." + "\u001B[0m");
-			return; // Sai do método se a conta de origem não for encontrada
+			return;
 		}
 
-		// Solicita número da conta de destino
 		System.out.println("\u001B[36m" + "\nDigite o número da conta de destino: " + "\u001B[0m");
 		String numeroContaDestinoStr = scanner.nextLine();
 		String numeroContaDestinoFormatado = Utils.removerNaoNumericos(numeroContaDestinoStr);
 		int numeroContaDestino = Integer.parseInt(numeroContaDestinoFormatado);
 
-		// Verifica se a conta de destino existe
 		Cliente clienteDestino = clienteRepository.findByNumeroConta(numeroContaDestino);
 		if (clienteDestino == null) {
 			System.out.println("\u001B[31m" + "\nConta de destino não encontrada." + "\u001B[0m");
 			return; // Sai do método se a conta de destino não for encontrada
 		}
 
-		// Solicita valor da transferência
 		System.out.println("\u001B[36m" + "\nDigite o valor a ser transferido: " + "\u001B[0m");
 		String valorTransferenciaStr = scanner.nextLine();
 		String valorTransferenciaFormatado = Utils.removerNaoNumericos(valorTransferenciaStr);
 		double valorTransferencia = Double.parseDouble(valorTransferenciaFormatado);
 
-		// Verifica se o saldo da conta de origem é suficiente para a transferência
 		if (clienteOrigem.getSaldo() < valorTransferencia) {
 			System.out.println("\u001B[31m" + "\nSaldo insuficiente para realizar a transferência." + "\u001B[0m");
 			return; // Sai do método se nao tiver o saldo 
 		}
 
-		// Confirma e efetuar a transferência
 		System.out.println("\u001B[36m" + "\nConfirma a transferência de "
 				+ Utils.formatarSaldoParaExibicao(valorTransferencia) + " da conta " + numeroContaOrigem
 				+ " para a conta " + numeroContaDestino + "? (sim/não)" + "\u001B[0m");
 		String confirmacao = scanner.nextLine();
 
 		if (confirmacao.equalsIgnoreCase("sim")) {
-			// Efetua a transferência
 			clienteOrigem.setSaldo(clienteOrigem.getSaldo() - valorTransferencia);
 			clienteDestino.setSaldo(clienteDestino.getSaldo() + valorTransferencia);
 			clienteRepository.update(clienteOrigem);
@@ -294,24 +273,20 @@ public class ClienteService {
 	public void consultarSaldo(Scanner scanner) {
 		System.out.println("\u001B[36m" + "\nConsulta de Saldo" + "\u001B[0m");
 
-		// Solicita número da conta
 		System.out.println("\u001B[36m" + "\nDigite o número da conta: " + "\u001B[0m");
 		String numeroContaStr = scanner.nextLine();
 		String numeroContaFormatado = Utils.removerNaoNumericos(numeroContaStr);
 		int numeroConta = Integer.parseInt(numeroContaFormatado);
 
-		// Verifica se a conta existe
 		Cliente cliente = clienteRepository.findByNumeroConta(numeroConta);
 		if (cliente == null) {
 			System.out.println("\u001B[31m" + "\nConta não encontrada." + "\u001B[0m");
 			return; // Sai do método se a conta não for encontrada
 		}
 
-		// Exibe saldo do cliente
 		System.out.println("\u001B[36m" + "\nSaldo disponível na conta: "
 				+ Utils.formatarSaldoParaExibicao(cliente.getSaldo()) + "\u001B[0m");
 
-		// Exibe as informações de taxas
 		if (cliente.getTipoConta().equalsIgnoreCase("C")) {
 			System.out.println("\n\u001B[36mInformações de Taxas:" + "\u001B[0m");
 			if (cliente.getStatus().equalsIgnoreCase("COMUM")) {
@@ -351,7 +326,6 @@ public class ClienteService {
 
 	        Cartao novoCartao = new Cartao();
 	        
-	        // limite inicial com base na categoria do cliente
 	        switch (cliente.getStatus()) {
 	            case "COMUM":
 	                novoCartao.setLimite(1000);
@@ -406,7 +380,6 @@ public class ClienteService {
                 return;
             }
 
-            // Mostra os cartões de crédito do usuario
             System.out.println("\u001B[36m" + "\nCartões de Crédito Disponíveis:" + "\u001B[0m");
             for (int i = 0; i < cartoesDeCredito.size(); i++) {
                 System.out.println("\nCartão " +  (i + 1) + ". " + "Limite: " + Utils.formatarSaldoParaExibicao(cartoesDeCredito.get(i).getLimite()) +
@@ -427,7 +400,6 @@ public class ClienteService {
             String valorContaStr = scanner.nextLine();
             double valorConta = Double.parseDouble(Utils.removerNaoNumericos(valorContaStr));
 
-            // Verifica se o valor da conta ultrapassa 80% do limite
             double limite = cartaoSelecionado.getLimite();
             if (cartaoSelecionado.getFatura() + valorConta > 0.8 * limite) {
                 // Calcula a taxa de utilização
@@ -536,7 +508,6 @@ public class ClienteService {
                 return;
             }
 
-            // Realiza o sorteio
             boolean sorteio = Math.random() < 0.5; // 50% de chance de ser V ou F
 
             System.out.println("\u001B[36m" + "\nVerificando solicitação por favor aguarde... " + "\u001B[0m");
@@ -591,7 +562,6 @@ public class ClienteService {
 				return;
 			}
 
-			// Mostra os cartões de credito do usuario
 			System.out.println("\u001B[36m" + "\nCartões de Crédito Disponíveis:" + "\u001B[0m");
 			for (int i = 0; i < cartoesDeCredito.size(); i++) {
 				System.out.println("\nCartão " + (i + 1) + ". " + "Limite: " + Utils.formatarSaldoParaExibicao(cartoesDeCredito.get(i).getLimite()) +
@@ -615,7 +585,6 @@ public class ClienteService {
                 return;
             }
 
-            // Mostra os cartões de credito do usuario
             System.out.println("\u001B[36m" + "\nCartões de Crédito Disponíveis:" + "\u001B[0m");
             for (int i = 0; i < cartoesDeCredito.size(); i++) {
                 System.out.println("\nCartão " + (i + 1) + ". " + "Limite: " + Utils.formatarSaldoParaExibicao(cartoesDeCredito.get(i).getLimite()) +
@@ -632,7 +601,6 @@ public class ClienteService {
 
             Cartao cartaoSelecionado = cartoesDeCredito.get(escolhaCartao);
 
-            // Para cria um novo seguro no cartão
             SeguroCartao seguro = new SeguroCartao();
             System.out.println("\u001B[36m" + "\nEscolha o tipo de seguro a contratar: " + "\u001B[0m");
             System.out.println("\u001B[36m" + "1. Seguro Viagem" + "\u001B[0m");
@@ -675,8 +643,6 @@ public class ClienteService {
                     System.out.println("\u001B[31m" + "Opção de seguro inválida." + "\u001B[0m");
                     return;
             }
-
-            // Adiciona o seguro/cartão
             cartaoSelecionado.getSeguros().add(seguro);
 
             clienteRepository.update(cliente);
